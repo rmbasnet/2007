@@ -55,16 +55,29 @@ public class HashingTester {
 			
 			for(int j = 0; j<10000; j++) {
 				//inputting random value to an array
-				lProbing.getHashIndex(r.nextInt(high-low) + low);
+				int randomValue = r.nextInt(high-low) + low;
+				lProbing.probe(lProbing.getHashIndex(randomValue), randomValue);
 	    	}
-			System.out.println("Actual (average) cost: "+lProbing.getCost()/Double.valueOf(10000));
-			// call linearExpectedNoOfProbes(lambda);
+			
+			// lProbing.display();
+			System.out.println("Actual (average) cost: "+ ((lProbing.getCost())/Double.valueOf(10000)));
+			linearExpectedNoOfProbes(lambda);	
 		}
 			
 		else if(probeType == 2){
+			QuadraticProbing qProbing = new QuadraticProbing(hashTableSize);
+			
+			for(int j = 0; j<10000; j++) {
+				//inputting random value to an array
+				int randomValue = r.nextInt(high-low) + low;
+				qProbing.probe(qProbing.getHashIndex(randomValue), randomValue);
+	    	}
+			
+			// qProbing.display();
+			System.out.println("Actual (average) cost: "+ ((qProbing.getCost())/Double.valueOf(10000)));
+			linearExpectedNoOfProbes(lambda);	
 			// repeat the exact above steps for the quadratic probing
 		}
-//			
 		return theArray;
     }
 	

@@ -19,22 +19,33 @@ public class LinearProbing {
 	
 	//method to implement getHashIndex
 	public int getHashIndex(int key){
-		return (key % maxSize + maxSize) % maxSize;
+		return (key % maxSize);
 		// Implement getHashIndex here
 	}
 	
 	//method to implement linear probing
 	public void probe(int index, int key){
-		int temp = index;
-		if(hashTable[index] != null){
-			cost++;
-			index = (index + 1) % maxSize;
-			if(index == temp){
-				System.out.println("hash table full");
-			}
+		if (index == currentSize) {
+			System.out.println("hash table full");
+			return;
 		}
-		hashTable[index] = key;
-		currentSize++;
+		
+		while (hashTable[index] != null) {
+            cost++;
+            index = (index + 1) % maxSize;
+
+        }
+        hashTable[index] = key;
+        currentSize++;
+
 		// Implement linear probing here
 	}
+
+	// public void display( ) {
+	// 	// for (int i= 0; i <maxSize; i++){
+	// 	// 	System.out.println(hashTable[i]);
+	// 	// }
+	// 	System.out.println(hashTable.length);
+		
+	// }
 }
